@@ -1,0 +1,288 @@
+{
+	"info": {
+		"_postman_id": "5bd386db-e855-4318-aa51-0f7f1a93a3f9",
+		"name": "AGROTIS - Teste Técnico Nelson Meduna",
+		"description": "# Postman Collection - Teste Técnico Agrotis\n\nEste projeto inclui uma coleção do Postman para facilitar a execução e testes das APIs da aplicação.\n\n## Como utilizar\n\n1. **Importação da coleção**\n    \n    - Abra o Postman.\n        \n    - Vá até **File** > **Import**.\n        \n    - Selecione o arquivo `.json` da coleção localizado na raiz do projeto.\n        \n2. **Configuração do ambiente**\n    \n    - A coleção contém variáveis de ambiente para facilitar o uso.\n        \n    - Certifique-se de configurar corretamente os valores das variáveis como **base_url** apontando para o endereço onde a aplicação está rodando.\n        \n3. **Executando as requisições**\n    \n    - Após importar a coleção e configurar o ambiente, selecione um endpoint e clique em **Send**.\n        \n4. **Fluxo básico de testes**\n    \n    - Criar uma entidade (POST).\n        \n    - Buscar registros existentes (GET).\n        \n    - Atualizar dados (PUT).\n        \n    - Deletar um registro (DELETE).\n        \n\nEssa coleção ajuda a validar rapidamente o funcionamento da API e pode ser integrada com testes automatizados. 🚀",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36284896"
+	},
+	"item": [
+		{
+			"name": "GET LISTA PESSOAS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/pessoas",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pessoas"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "GET RELATORIO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/laboratorios/relatorio?quantidadeMinimaPessoas=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"laboratorios",
+						"relatorio"
+					],
+					"query": [
+						{
+							"key": "quantidadeMinimaPessoas",
+							"value": "1"
+						},
+						{
+							"key": "dataInicialStart",
+							"value": "2022-01-01T00:00:00",
+							"disabled": true
+						},
+						{
+							"key": "dataInicialEnd",
+							"value": "2022-12-31T23:59:59",
+							"disabled": true
+						},
+						{
+							"key": "observacoes",
+							"value": "teste",
+							"disabled": true
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "GET PESSOA BY ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/pessoas/2",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pessoas",
+						"2"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "CRIAR PESSOA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Teste3333\",\n\t\"dataInicial\": \"2022-02-02T17:41:44\",\n\t\"dataFinal\": \"2022-02-02T17:41:44\",\n\t\"observacoes\": \"Observacao exemplo de teste\",\n\t\"infosPropriedade\": {\n        \"id\": 2,\n        \"nome\": \"jubilei\"\n    },\n\t\"laboratorio\":  {\n        \"id\": 2,\n        \"nome\": \"funciona\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/pessoas",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pessoas"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "ATUALIZAR PESSOA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"pato papao\",\n\t\"dataInicial\": \"2022-02-02T17:41:44\",\n\t\"dataFinal\": \"2022-02-02T17:41:44\",\n\t\"observacoes\": \"Observacao exemplo de teste123\",\n\t\"infosPropriedade\": null,\n\t\"laboratorio\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/pessoas/2",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pessoas",
+						"2"
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE PESSOA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful DELETE request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/pessoas/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pessoas",
+						"1"
+					]
+				},
+				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}

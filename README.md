@@ -43,6 +43,10 @@ docker-compose down
 - **Docker e Docker Compose**
 - **JUnit e Mockito** para testes
 
+## Collection do Postman
+- A collection do Postman que eu utilizei para testes das rotas, está nos arquivos do repositório na pasta raíz.
+- collection_agrotis.postman_collection.json
+
 ---
 Agora a aplicação está pronta para execução e testes! 🚀
 
